@@ -33,7 +33,8 @@ func getBook(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
 	for _, item := range books {
-		if item.ID, _ = strconv.Atoi(params["id"]); item.ID == item.ID {
+		item.ID, _ = strconv.Atoi(params["id"])
+		if item.ID == item.ID {
 			json.NewEncoder(w).Encode(item)
 			return
 		}
@@ -55,7 +56,8 @@ func updateBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for index, item := range books {
-		if item.ID, _ = strconv.Atoi(params["id"]); item.ID == item.ID {
+		item.ID, _ = strconv.Atoi(params["id"])
+		if item.ID == item.ID {
 			books = append(books[:index], books[index+1:]...)
 			var book Book
 			_ = json.NewDecoder(r.Body).Decode(&book)
@@ -71,7 +73,8 @@ func deleteBook(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	params := mux.Vars(r)
 	for index, item := range books {
-		if item.ID, _ = strconv.Atoi(params["id"]); item.ID == item.ID {
+		item.ID, _ = strconv.Atoi(params["id"])
+		if item.ID == item.ID {
 			books = append(books[:index], books[index+1:]...)
 			break
 		}
